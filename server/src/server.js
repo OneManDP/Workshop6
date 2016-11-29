@@ -1,23 +1,8 @@
-var reverse = require('./util');
-var bodyParser = require('body-parser');
 var express = require('express');
 // Creates an Express server.
 var app = express();
-app.use(bodyParser.text());
-// Defines what happens when it receives the `GET /` request
-app.get('/', function (req, res) {
-res.send('Hello World!');
-});
+app.use(express.static('../client/build'));
 // Starts the server on port 3000!
 app.listen(3000, function () {
 console.log('Example app listening on port 3000!');
-});
-app.post('/reverse', function (req, res) {
-// How do we get the input text?
-// How do we send the output text?
-if (typeof(req.body) === 'string') {
-var reversed = reverse.reverseString(req.body);
-res.send(reversed);
-} else {
-res.status(400).end()}
 });
